@@ -1,59 +1,89 @@
-# VasilevskiiTestTask
+# Тестовое задание ToDo List
 
-This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 19.2.6.
+🚀 **Приложение задиплоено с использованием GHPages и доступно для теста онлайн:**  
+👉 [vasilevskiyivan.github.io/ToDoList-Test-Vasilevskiy/welcome](https://vasilevskiyivan.github.io/ToDoList-Test-Vasilevskiy/welcome)
 
-## Development server
+---
 
-To start a local development server, run:
+## 📝 Описание проекта
+
+Это одностраничное веб-приложение, созданное с помощью Angular и Firebase, предназначенное для создания, редактирования и управления задачами.  
+Поддерживает авторизацию через Google, хранение задач в реальном времени и удобные инструменты фильтрации и сортировки.
+
+---
+
+## 🛠️ Используемые технологии
+
+- **Angular** - основной фреймворк
+- **Firebase**:
+  - **Authentication** - вход через Google-аккаунт
+  - **Cloud Firestore** - хранение задач в реальном времени (структура: `users/{userId}/tasks`)
+- **Angular Material** - библиотека UI-компонентов
+- **RxJS** — реактивная работа с потоками данных и фильтрацией
+- **Reactive Forms** - работа с формами и фильтрами
+- **Auth Guard** - защита маршрутов
+
+---
+
+## ✨ Основные возможности
+
+- **Аутентификация через Google**
+- **Создание / Редактирование / Удаление задач**
+- **Отслеживание статуса задачи** (ожидает / завершена)
+- **Фильтрация по:**
+  - Заголовку и описанию (поиск по тексту)
+  - Статусу выполнения
+  - Наличию описания
+  - Диапазону дат создания
+- **Сортировка:**
+  - По дате создания
+  - По заголовку
+  - В порядке возрастания / убывания
+- **Мгновенное применение фильтров и сортировки**
+  - Используется `combineLatest`, `BehaviorSubject`, `map` (RxJS)
+- **Сохранение данных в Firestore** с автообновлением через `onSnapshot`
+- **Защита маршрутов (AuthGuard)**
+
+---
+
+## ▶️ Как запустить проект локально
+
+## Клонирование репозитория:
+
+```bash
+git clone <URL_РЕПОЗИТОРИЯ>
+cd <НАЗВАНИЕ_ПАПКИ_ПРОЕКТА>
+```
+
+## Установка зависимостей
+
+```bash
+npm install
+# или
+yarn install
+```
+
+## Настройка Firebase
+Данные для подключения к Firebase уже предоставлены в src/app/app.config.ts для удобства тестирования:
+
+```bash
+const firebaseConfig = {
+  apiKey: "AIzaSyCCEw52sMk7lkjPSJcnB-T1bCxilcj1axw",
+  authDomain: "test-task-a091d.firebaseapp.com",
+  projectId: "test-task-a091d",
+  storageBucket: "test-task-a091d.appspot.com",
+  messagingSenderId: "567760247807",
+  appId: "1:567760247807:web:b2d9f702089c9274c8e5ca",
+  measurementId: "G-BWPPNEEFE4"
+};
+```
+
+! Примечание для проверяющих. Эти API-ключи включены для упрощения запуска проекта без дополнительной настройки. В дальнейшем, разумеется, их лучше скрыть в .env и тд
+
+## Запуск приложения
+
+После установки зависимостей запустить приложение:
 
 ```bash
 ng serve
 ```
-
-Once the server is running, open your browser and navigate to `http://localhost:4200/`. The application will automatically reload whenever you modify any of the source files.
-
-## Code scaffolding
-
-Angular CLI includes powerful code scaffolding tools. To generate a new component, run:
-
-```bash
-ng generate component component-name
-```
-
-For a complete list of available schematics (such as `components`, `directives`, or `pipes`), run:
-
-```bash
-ng generate --help
-```
-
-## Building
-
-To build the project run:
-
-```bash
-ng build
-```
-
-This will compile your project and store the build artifacts in the `dist/` directory. By default, the production build optimizes your application for performance and speed.
-
-## Running unit tests
-
-To execute unit tests with the [Karma](https://karma-runner.github.io) test runner, use the following command:
-
-```bash
-ng test
-```
-
-## Running end-to-end tests
-
-For end-to-end (e2e) testing, run:
-
-```bash
-ng e2e
-```
-
-Angular CLI does not come with an end-to-end testing framework by default. You can choose one that suits your needs.
-
-## Additional Resources
-
-For more information on using the Angular CLI, including detailed command references, visit the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.

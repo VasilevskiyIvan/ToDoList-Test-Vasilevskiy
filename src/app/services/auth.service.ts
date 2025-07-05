@@ -1,6 +1,14 @@
 import { Injectable } from '@angular/core';
-import { Auth, onAuthStateChanged, User, GoogleAuthProvider, signInWithPopup, signOut } from '@angular/fire/auth';
-import { BehaviorSubject } from 'rxjs';
+import {
+  Auth,
+  onAuthStateChanged,
+  User,
+  GoogleAuthProvider,
+  signInWithRedirect,
+  getRedirectResult,
+  signOut
+} from '@angular/fire/auth';
+import { BehaviorSubject, from } from 'rxjs';
 import { Router } from '@angular/router';
 
 @Injectable({
@@ -20,23 +28,41 @@ export class AuthService {
     onAuthStateChanged(this.auth, user => {
       this._user.next(user);
       this._userId.next(user ? user.uid : null);
-
       this._isLoadingUser.next(false);
+    });
+
+    from(getRedirectResult(this.auth)).subscribe({
+      next: (result) => {
+        if (result) {
+          console.log("Logged in with Google via redirect:", result.user);
+          this.router.navigate(['/tasks']);
+        } else {
+          console.log("No redirect result or user not logged in yet.");
+        }
+      },
+      error: (error) => {
+        console.error("Error processing redirect result:", error);
+      }
     });
   }
 
   async loginWithGoogle(): Promise<void> {
     try {
       const provider = new GoogleAuthProvider();
-      const userCredential = await signInWithPopup(this.auth, provider);
-      this.router.navigate(['/tasks']);
-    } catch (error) {
+      await signInWithRedirect(this.auth, provider);
+    } catch (error: any) {
+      console.error("Error during Google login redirect initiation:", error);
+      if (error.code === 'auth/popup-blocked') {
+        alert('Всплывающее окно заблокировано. Пожалуйста, разрешите всплывающие окна для этого сайта.');
+      }
     }
   }
 
   logout(): void {
     signOut(this.auth).then(() => {
       this.router.navigate(['/welcome']);
+    }).catch(error => {
+      console.error("Error during logout:", error);
     });
   }
 

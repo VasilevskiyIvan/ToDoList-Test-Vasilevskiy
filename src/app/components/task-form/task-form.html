@@ -1,0 +1,31 @@
+<main class="task-form">
+  <form [formGroup]="taskForm" (ngSubmit)="onSubmit()" class="task-form__container">
+    <header class="task-form__header">
+      <h1 class="task-form__title">Добавить Новую Задачу</h1>
+    </header>
+    <section class="task-form__content">
+      <mat-form-field appearance="outline" class="task-form__field">
+        <mat-label>Заголовок</mat-label>
+        <input matInput formControlName="title" required />
+        @if (taskForm.get('title')?.hasError('required') && taskForm.get('title')?.touched) {
+        <mat-error>Заголовок обязателен.</mat-error>
+        }
+      </mat-form-field>
+
+      <mat-form-field appearance="outline" class="task-form__field">
+        <mat-label>Описание</mat-label>
+        <textarea matInput formControlName="description" rows="5"></textarea>
+      </mat-form-field>
+    </section>
+
+    <footer class="task-form__actions">
+      <button mat-raised-button color="primary" type="submit" [disabled]="taskForm.invalid"
+        class="task-form__button task-form__button--save">
+        <mat-icon>save</mat-icon> Сохранить
+      </button>
+      <button mat-button type="button" (click)="cancel()" class="task-form__button task-form__button--cancel">
+        <mat-icon>cancel</mat-icon> Отмена
+      </button>
+    </footer>
+  </form>
+</main>

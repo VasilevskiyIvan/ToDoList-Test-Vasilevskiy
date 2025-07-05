@@ -1,0 +1,108 @@
+.task-detail {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px;
+}
+
+.task-detail__loading-bar {
+    width: 100%;
+    max-width: 600px;
+    position: relative;
+    margin-bottom: 20px;
+
+    mat-progress-bar {
+        position: absolute;
+        width: 100%;
+        border-top-left-radius: 10px;
+        border-top-right-radius: 10px;
+    }
+}
+
+.task-detail__card {
+    width: 100%;
+    max-width: 600px;
+    background-color: rgb(255, 255, 255);
+    border-radius: 10px;
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    margin-bottom: 20px;
+}
+
+.task-detail__header {
+    background-color: rgb(245, 245, 245);
+    padding: 15px 25px;
+    border-bottom: 1px solid rgb(235, 235, 235);
+}
+
+.task-detail__title {
+    font-size: 25px;
+    font-weight: 600;
+    color: rgb(63, 81, 181);
+    margin: 0;
+}
+
+.task-detail__content {
+    padding: 25px;
+    font-size: 18px;
+    line-height: 1.6;
+    color: rgb(50, 50, 50);
+
+    .task-detail__text {
+        margin-bottom: 10px;
+        word-wrap: break-word;
+    }
+}
+
+.task-detail__label {
+    color: rgb(85, 85, 85);
+    font-weight: 600;
+}
+
+.task-detail__status {
+    font-weight: 500;
+
+    &--pending {
+        color: rgb(244, 67, 54);
+    }
+
+    &--completed {
+        color: rgb(76, 175, 80);
+    }
+}
+
+.task-detail__message {
+    padding: 20px;
+    text-align: center;
+    font-style: italic;
+    border-radius: 5px;
+    margin-top: 10px;
+
+    &--not-found {
+        color: rgb(120, 120, 120);
+        background-color: rgb(240, 240, 240);
+    }
+
+    &--error {
+        background-color: rgb(255, 235, 238);
+        color: rgb(211, 47, 47);
+        border: 1px solid rgb(239, 154, 154);
+    }
+}
+
+.task-detail__actions {
+    padding: 15px 25px;
+    display: flex;
+    justify-content: flex-end;
+    width: 100%;
+    max-width: 600px;
+    box-sizing: border-box;
+}
+
+.task-detail__button-back {
+    border-radius: 20px;
+    height: 40px;
+    padding: 0 20px;
+    font-weight: 500;
+    text-transform: uppercase;
+}

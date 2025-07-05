@@ -1,0 +1,23 @@
+<main class="welcome">
+    <section class="welcome__card">
+        <header class="welcome__header">
+            <h1 class="welcome__title">Добро пожаловать в Task Manager</h1>
+            <p class="welcome__subtitle">Простой и удобный сервис для ваших задач</p>
+        </header>
+        <div class="welcome__content">
+            <p class="welcome__text">
+                Для начала работы, войдите с помощью вашего Google аккаунта.
+            </p>
+            <button mat-raised-button color="primary" class="welcome__login-button" (click)="login()">
+                <mat-icon>login</mat-icon>
+                Войти через Google
+            </button>
+        </div>
+        <hr class="welcome__divider" />
+        <footer class="welcome__footer">
+            <p class="welcome__footer-text">
+                Разработано Василевским Иваном в рамках решения тестового задания для компании ООО "Мультибит"
+            </p>
+        </footer>
+    </section>
+</main>
